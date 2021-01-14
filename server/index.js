@@ -1,8 +1,9 @@
 const express = require('express')
-const app = express()
 const cors = require('cors')
+const companies = require('./public/companies')
+
+const app = express()
 const port = 3005
-const companies = require('./companies')
 
 app.use(cors())
 
@@ -10,4 +11,4 @@ app.get('/', (req, res) => {
   res.send(companies)
 })
 
-app.listen(port, () => console.log(`Demo server listening on port ${port}!`))
+app.listen(port, () => console.log(`Test server listening on port ${port}!`))
