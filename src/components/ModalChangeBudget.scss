@@ -1,0 +1,33 @@
+.ModalChangeBudget {
+  text-align: center;
+}
+
+.ModalChangeBudget__name {
+  margin-top: 0;
+}
+
+.ModalChangeBudget__form {
+  text-align: center;
+  max-width: 150px;
+}
+
+.ModalChangeBudget__form__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.ModalChangeBudget__form__input {
+  margin-top: 8px;
+}
+
+.ModalChangeBudget__form__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.ModalChangeBudget__form__status {
+  margin-bottom: 0;
+}
