@@ -1,0 +1,32 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "Martian Firma",
+      "budget": 1000.0101,
+      "budget_spent": 500.0011,
+      "date_of_first_purchase": "2119-07-07"
+    },
+    {
+      "id": 2,
+      "name": "Solar Firma",
+      "budget": 2000.0101,
+      "budget_spent": 100.0011,
+      "date_of_first_purchase": "2120-01-14"
+    },
+    {
+      "id": 3,
+      "name": "Prometheus",
+      "budget": 10550.0101,
+      "budget_spent": 2100.0011,
+      "date_of_first_purchase": "2120-01-14"
+    },
+    {
+      "id": 4,
+      "name": "Orion Industries",
+      "budget": 64000.0101,
+      "budget_spent": 8100.0011,
+      "date_of_first_purchase": "2120-01-14"
+    }
+  ]
+}
