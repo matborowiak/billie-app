@@ -1,0 +1,25 @@
+@import '../styles/shared.scss';
+
+.Modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1f2530ed;
+}
+
+.Modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid $darkblue;
+  background: $background;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 4px;
+  outline: none;
+  padding: 32px;
+  color: white;
+}
