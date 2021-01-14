@@ -21,7 +21,9 @@ const CustomerList = () => {
   const [modalId, setModalId] = useState<number | null>(null)
 
   const { isLoading, error, data } = useQuery('companyData', () =>
-    fetch('http://172.21.3.165:3005').then((res) => res.json())
+    fetch(`http://${process.env.REACT_APP_NETWORK_IP}:3005`).then((res) =>
+      res.json()
+    )
   )
 
   useEffect(() => {
