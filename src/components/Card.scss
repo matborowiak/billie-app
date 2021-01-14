@@ -1,0 +1,54 @@
+@import '../styles/shared.scss';
+
+.Card {
+  @include shadow;
+  padding: 8px;
+  margin: 16px 0;
+  text-align: left;
+  border: solid $darkblue 1px;
+  border-radius: 8px;
+  transition: transform (0.15s ease);
+  background-color: $background;
+  color: $whitest;
+}
+
+.Card:hover {
+  transform: scale(1.025, 1.025);
+}
+
+.Card__data-field {
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    'gc-name gc-name'
+    'gc-1 gc-2'
+    'gc-3 gc-4';
+
+  @media (min-width: $brk-mobile) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'gc-name gc-1 gc-2 gc-3 gc-4';
+  }
+}
+
+.gc-name {
+  grid-area: gc-name;
+}
+.gc-1 {
+  grid-area: gc-1;
+}
+.gc-2 {
+  grid-area: gc-2;
+}
+.gc-3 {
+  grid-area: gc-3;
+}
+.gc-4 {
+  grid-area: gc-4;
+}
