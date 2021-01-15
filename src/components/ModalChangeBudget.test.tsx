@@ -10,10 +10,10 @@ const companyDataMock = {
   date_of_first_purchase: '2119-07-07',
 }
 
-const setup = () => {
-  const handleSuccessfulSubmit = jest.fn()
-  const handleCloseModal = jest.fn()
+const handleSuccessfulSubmit = jest.fn()
+const handleCloseModal = jest.fn()
 
+const setup = () => {
   const utils = render(
     <ModalChangeBudget
       companyData={companyDataMock}
@@ -29,8 +29,6 @@ const setup = () => {
   })
 
   return {
-    handleSuccessfulSubmit,
-    handleCloseModal,
     closeButton,
     submitButton,
     inputField,
@@ -40,19 +38,46 @@ const setup = () => {
 
 describe('ModalChangeBudget component', () => {
   it('renders correctly', () => {
-    const { getByText } = setup()
+    const { inputField, closeButton, submitButton, getByText } = setup()
 
     expect(getByText('🏦 Martian Firma')).toBeInTheDocument()
+    expect(inputField).toBeInTheDocument()
+    expect(closeButton).toBeInTheDocument()
+    expect(submitButton).toBeInTheDocument()
   })
 
-  it('inputs company budget in string format', () => {
+  it('displays company budget in input in string format', () => {
     const { inputField } = setup()
     expect(inputField).toHaveValue('1.000,0101')
   })
 
+  it('prevents submit and displays error on wrong input', async () => {
+    const { submitButton, inputField } = setup()
+
+    fireEvent.change(inputField, { target: { value: 'abc' } })
+    fireEvent.click(submitButton)
+    const statusSubmit = screen.getByText(
+      'Invalid input format. Accepted characters: [0-9.,]'
+    )
+    expect(statusSubmit).toBeInTheDocument()
+    expect(handleSuccessfulSubmit).toHaveBeenCalledTimes(0)
+  })
+
+  it('prevents submit and displays error on too small amount', async () => {
+    const { submitButton, inputField } = setup()
+
+    fireEvent.change(inputField, { target: { value: '50' } })
+    fireEvent.click(submitButton)
+    const statusSubmit = screen.getByText(
+      'The budget is too small! It must be greater than: 500.0011'
+    )
+    expect(statusSubmit).toBeInTheDocument()
+    expect(handleSuccessfulSubmit).toHaveBeenCalledTimes(0)
+  })
+
   describe('Close button', () => {
-    it('handles modal closing', async () => {
-      const { closeButton, handleCloseModal } = setup()
+    it('handles modal close', async () => {
+      const { closeButton } = setup()
 
       fireEvent.click(closeButton)
       expect(handleCloseModal).toHaveBeenCalled()
@@ -60,8 +85,8 @@ describe('ModalChangeBudget component', () => {
   })
 
   describe('Submit button', () => {
-    it('calls submit function on success', () => {
-      const { submitButton, handleSuccessfulSubmit, getByText } = setup()
+    it('handles submit function on success, displays success message', () => {
+      const { submitButton, getByText } = setup()
 
       fireEvent.click(submitButton)
       expect(handleSuccessfulSubmit).toHaveBeenCalled()
@@ -75,29 +100,5 @@ describe('ModalChangeBudget component', () => {
     })
   })
 
-  describe('Submit status', () => {
-    it('prevents submit and displays error on wrong input', async () => {
-      const { submitButton, inputField, handleSuccessfulSubmit } = setup()
-
-      fireEvent.change(inputField, { target: { value: 'abc' } })
-      fireEvent.click(submitButton)
-      const statusSubmit = screen.getByText(
-        'Invalid input format. Accepted characters: [0-9.,]'
-      )
-      expect(statusSubmit).toBeInTheDocument()
-      expect(handleSuccessfulSubmit).toHaveBeenCalledTimes(0)
-    })
-
-    it('prevents submit and displays error on too small amount', async () => {
-      const { submitButton, inputField, handleSuccessfulSubmit } = setup()
-
-      fireEvent.change(inputField, { target: { value: '50' } })
-      fireEvent.click(submitButton)
-      const statusSubmit = screen.getByText(
-        'The budget is too small! It must be greater than: 500.0011'
-      )
-      expect(statusSubmit).toBeInTheDocument()
-      expect(handleSuccessfulSubmit).toHaveBeenCalledTimes(0)
-    })
-  })
+  describe('Submit status', () => {})
 })
