@@ -12,6 +12,7 @@ To make sure the **client app** works correctly, you need to take those three st
 1. Create `.env.local` file in root directory, and set environment variable: `REACT_APP_NETWORK_IP=172.21.3.165`\
    replacing its value with your local network IP.\
    To obtain the IP you can run `yarn start` and take the IP from the console output:
+
    ![](https://i.imgur.com/fGR8EmP.png)
 
 2. Run `yarn server` in your console in order to start the **server app** mocking the endpoint
