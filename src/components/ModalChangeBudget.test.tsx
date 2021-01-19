@@ -99,6 +99,4 @@ describe('ModalChangeBudget component', () => {
       expect(statusSubmit).toBeInTheDocument()
     })
   })
-
-  describe('Submit status', () => {})
 })
