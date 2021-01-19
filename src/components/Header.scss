@@ -3,3 +3,7 @@
 .App-header {
   color: $accent;
 }
+
+.App-header__title {
+  @include unselective;
+}
